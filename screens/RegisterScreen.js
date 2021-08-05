@@ -2,7 +2,7 @@
  * @author YsnIrix
  * @email ysn4irix@gmail.com
  * @create date 24-05-2021
- * @modify date 03-08-2021
+ * @modify date 05-08-2021
  * @desc [description]
  */
 
@@ -61,8 +61,8 @@ const Register = ({ navigation }) => {
           handleMessage(message, response);
           setSubmitting(false);
         } else {
-          /* navigation.navigate("LoginScreen"); */
-          persistLogin({ ...message.user }, message, "OK");
+          navigation.navigate("LoginScreen");
+          /* persistLogin({ ...message.user }, message, "OK"); */
         }
         setSubmitting(false);
       })

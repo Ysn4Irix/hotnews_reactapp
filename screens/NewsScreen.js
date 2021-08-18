@@ -2,7 +2,7 @@
  * @author YsnIrix
  * @email ysn4irix@gmail.com
  * @create date 24-05-2021
- * @modify date 05-08-2021
+ * @modify date 18-08-2021
  * @desc [description]
  */
 
@@ -40,12 +40,12 @@ const News = () => {
   const { storedCredentials, setStoredCredentials } =
     useContext(CredentialsContext);
   //console.log(storedCredentials);
-  const { _id, token, country, interestedin } = storedCredentials;
+  const user = storedCredentials;
 
   //#region Switch
   let flag = "🇦🇷";
 
-  switch (country) {
+  switch (user.country) {
     case "ar":
       flag;
       break;
@@ -95,7 +95,7 @@ const News = () => {
   useEffect(() => {
     axios
       .get(APIurl, {
-        headers: { "Content-Type": "application/json", ysntoken: token },
+        headers: { "Content-Type": "application/json", ysntoken: user.token },
       })
       .then((res) => {
         const { news } = res.data;
@@ -109,7 +109,7 @@ const News = () => {
       .catch((error) => {
         console.log(error.JSON);
       });
-  });
+  }, []);
 
   const ClearLogin = () => {
     AsyncStorage.removeItem("UserData")
@@ -126,7 +126,7 @@ const News = () => {
         <InnerContainer>
           <NewsPageTitle>
             Latest news in {flag} for{" "}
-            <IntrestedInTitle>{interestedin}</IntrestedInTitle>
+            <IntrestedInTitle>{user.interestedin}</IntrestedInTitle>
           </NewsPageTitle>
           <LinkText onPress={ClearLogin}>
             <LinkTextContent>Logout</LinkTextContent>
@@ -137,7 +137,6 @@ const News = () => {
                 flex: 1,
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: "blue",
               }}
               size="large"
               color={Colors.white}
@@ -145,7 +144,7 @@ const News = () => {
           ) : (
             data.map((item) => {
               return (
-                <NewsCard key={item.title}>
+                <NewsCard key={item.url}>
                   <View>
                     <CardImage
                       source={{

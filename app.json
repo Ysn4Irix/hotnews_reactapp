@@ -4,18 +4,21 @@
     "slug": "hotnews",
     "version": "1.1.0",
     "orientation": "portrait",
+    "splash": {
+      "image": "./assets/splash.png",
+      "backgroundColor": "#9CA3bF",
+      "resizeMode": "cover"
+    },
     "icon": "./assets/news.png",
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
     "android": {
-      "package":"com.ysnirix.hotnews",
+      "package": "com.ysnirix.hotnews",
       "adaptiveIcon": {
         "foregroundImage": "./assets/news.png",
         "backgroundColor": "#9CA3BF"

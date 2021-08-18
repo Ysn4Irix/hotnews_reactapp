@@ -2,7 +2,7 @@
  * @author YsnIrix
  * @email ysn4irix@gmail.com
  * @create date 24-05-2021
- * @modify date 05-08-2021
+ * @modify date 18-08-2021
  * @desc [description]
  */
 
@@ -56,13 +56,12 @@ const Register = ({ navigation }) => {
       .post(APIurl, credentials)
       .then((res) => {
         const result = res.data;
-        const { response, message } = result;
+        const { response, message, user } = result;
         if (response !== "OK") {
           handleMessage(message, response);
           setSubmitting(false);
         } else {
-          navigation.navigate("LoginScreen");
-          /* persistLogin({ ...message.user }, message, "OK"); */
+          persistLogin(user, message, response);
         }
         setSubmitting(false);
       })
@@ -83,6 +82,7 @@ const Register = ({ navigation }) => {
       .then(() => {
         handleMessage(message, status);
         setStoredCredentials(credentials);
+        console.log(credentials);
       })
       .catch((error) => {
         console.log(error);
